@@ -1,4 +1,4 @@
-package MiniGame;
+﻿package MiniGame;
 
 public class UserData {
 	private String name;
@@ -45,7 +45,7 @@ public class UserData {
 	}
 	
 	public void print(){
-		System.out.println("이름 : " + name + ", 게임종류 : " + gameKind + ", 기록 : " + record);
+		AppView.outputLine("이름 : " + name + ", 게임종류 : " + gameKind + ", 기록 : " + record);
 	}
 
 }

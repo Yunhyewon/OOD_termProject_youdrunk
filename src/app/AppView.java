@@ -1,4 +1,4 @@
-package app;
+﻿package app;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -15,6 +15,7 @@ public final class AppView {
 	static Store st;
 	static Drink dr;
 	static MakeMixList ml = new MakeMixList(); 
+	static Minigame mg = new Minigame();
 	private AppView() {
 
 	}
@@ -74,7 +75,6 @@ public final class AppView {
 		
 		AppView.output("플레이어의 이름을 입력하세요 : ");
 		name = scanner.next();
-		
 		if(dataBase.userSearch(name)){
 			if(dataBase.getDataBase()[dataBase.indexSearch(name)].getGameCount()%2 == 1){ // 게임횟수가 홀수일때
 				num = dataBase.getDataBase()[dataBase.indexSearch(name)].getTypingSentence();
@@ -100,16 +100,16 @@ public final class AppView {
 		if (user.getGameCount()%2 == 1) {
 			recordGap = game.TypingGame(num) - user.getGameRecord();
 			
-			outputLine("전 후 비교 결과 : ");
+			AppView.outputLine("전 후 비교 결과 : ");
 			System.out.printf("%.2f",recordGap);
 			if(recordGap <= 1){
-				outputLine(" 오우 아직 안취하셨네요~");
+				AppView.outputLine(" 오우 아직 안취하셨네요~");
 			}
 			else if(recordGap < 3){
-				outputLine(" 취했네 취했어~");
+				AppView.outputLine(" 취했네 취했어~");
 			}
 			else{
-				outputLine(" 제대로 취했네~ 집가세요^~^");
+				AppView.outputLine(" 제대로 취했네~ 집가세요^~^");
 			}
 			outputLine("");
 		}
