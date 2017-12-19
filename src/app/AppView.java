@@ -1,4 +1,4 @@
-﻿package app;
+package app;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -15,7 +15,6 @@ public final class AppView {
 	static Store st;
 	static Drink dr;
 	static MakeMixList ml = new MakeMixList(); 
-	static Minigame mg = new Minigame();
 	private AppView() {
 
 	}
@@ -41,6 +40,9 @@ public final class AppView {
 			}
 		}
 	}
+	
+	// 사용자에게 숫자를 입력받아 그에 해당하는 객체를 만든다.
+	
 	public static int menuDrinkList(){
 		AppView.outputLine("---------------Drink List---------------");
 		AppView.outputLine("1.Soju 2.Beer 3.Wine 4.Wisky");
@@ -65,6 +67,11 @@ public final class AppView {
 		
 		return userInput;
 	}
+	
+	// 유저의 정보를 받아 유저의 게임횟수가 홀수이면 게임을 한번 더 해야 전후비교를 할 수있다.
+	// 유저의 정보가 없으면 유저 객체를 생성하고, 정보가 있다면 게임 횟수를 탐색한다.
+	// 게임 횟수가 홀수면 유저에 저장된 타이핑게임 문장을 불러와 이전과 똑같은 문장으로 게임을 실행한다.
+	// 게임 횟수가 짝수면 랜덤한 수를 받아 타이핑게임 문장을 유저에 저장하고 새로 받은 문장으로 게임을 실행한다.
 
 	public static void PlayingGame(){
 		String name;
@@ -75,6 +82,7 @@ public final class AppView {
 		
 		AppView.output("플레이어의 이름을 입력하세요 : ");
 		name = scanner.next();
+		
 		if(dataBase.userSearch(name)){
 			if(dataBase.getDataBase()[dataBase.indexSearch(name)].getGameCount()%2 == 1){ // 게임횟수가 홀수일때
 				num = dataBase.getDataBase()[dataBase.indexSearch(name)].getTypingSentence();
@@ -100,7 +108,7 @@ public final class AppView {
 		if (user.getGameCount()%2 == 1) {
 			recordGap = game.TypingGame(num) - user.getGameRecord();
 			
-			AppView.outputLine("전 후 비교 결과 : ");
+			outputLine("전 후 비교 결과 : ");
 			System.out.printf("%.2f",recordGap);
 			if(recordGap <= 1){
 				AppView.outputLine(" 오우 아직 안취하셨네요~");
@@ -111,7 +119,7 @@ public final class AppView {
 			else{
 				AppView.outputLine(" 제대로 취했네~ 집가세요^~^");
 			}
-			outputLine("");
+			AppView.outputLine("");
 		}
 		else{
 			user.setGameRecord(game.TypingGame(num));
@@ -121,6 +129,8 @@ public final class AppView {
 		user.setGameCount(user.getGameCount()+1);
 		dataBase.addData(user);
 	}
+	
+	// 상점의 종류를 입력받아 그에 해당하는 객체를 만든다.
 
 	public static int menuStoreList(){
 		AppView.outputLine("---------------Store List---------------");
@@ -170,3 +180,4 @@ public final class AppView {
 		ml.detailMixList();
 	}
 }
+

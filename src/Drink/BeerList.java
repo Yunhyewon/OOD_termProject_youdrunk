@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import app.AppView;
 
+// 버퍼를 사용해 텍스트 파일을 읽어와서 리스트를 출력하게 구현
 
 public class BeerList implements Drink {
 	int userInput;
@@ -114,13 +115,12 @@ public class BeerList implements Drink {
 			case 23:
 				return;
 			}
-			
+
 			AppView.outputLine("다른 맥주의 정보를 보려면 1, 처음으로 돌아가려면 0을 입력하세요");
 			int num2 = input.nextInt();
 			if (num2 == 0) {
 				return;
-			} 
-			else if (num2 == 1) {
+			} else if (num2 == 1) {
 				printDrinkList();
 			}
 		}
